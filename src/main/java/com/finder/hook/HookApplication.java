@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @createdAt 7/10/2019
  */
 @SpringBootApplication
-public class HookfinderApplication {
+public class HookApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HookfinderApplication.class, args);
+		SpringApplication.run(HookApplication.class, args);
 	}
 
 }
