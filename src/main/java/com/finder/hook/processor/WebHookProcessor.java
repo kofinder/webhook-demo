@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 public class WebHookProcessor implements HookProcessor {
 
 	@Override
-	public void process(String payload, String entityName, String actionName, String tenantIdentifier,
-			String authToken) {
+	public void process(String payload, String entityName, String actionName, String tenantIdentifier, String authToken) {
 
 		// something to do
 	}
