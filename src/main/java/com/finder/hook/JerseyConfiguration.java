@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import com.finder.hook.resource.BaseResource;
+import com.finder.hook.resource.BaseApiResource;
 
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
@@ -25,7 +25,7 @@ public class JerseyConfiguration extends ResourceConfig{
 	
 	@Autowired
     public JerseyConfiguration() throws UnknownHostException {
-        register(BaseResource.class);
+        register(BaseApiResource.class);
         configureSwagger();
         property(ServletProperties.FILTER_FORWARD_ON_404, true);
     }

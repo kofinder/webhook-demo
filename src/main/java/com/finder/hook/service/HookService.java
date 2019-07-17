@@ -16,7 +16,7 @@ public class HookService {
 
 	public void publishEvent(String payload, String entityName, String actionName, String tenantIdentifier, String authToken) {
 		final HookEventSource hookEventSource = new HookEventSource(entityName, actionName);
-		final HookEvent applicationEvent = new HookEvent(hookEventSource, tenantIdentifier, authToken);
+		final HookEvent applicationEvent = new HookEvent(hookEventSource, payload, authToken);
 		applicationContext.publishEvent(applicationEvent);
 	}
 }

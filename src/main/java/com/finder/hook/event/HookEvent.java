@@ -20,11 +20,16 @@ public class HookEvent extends ApplicationEvent {
 	}
 
 	public final String getPayload() {
-		return payload;
+		return this.payload;
 	}
 
 	public final String getToken() {
-		return token;
+		return this.token;
+	}
+	
+	@Override
+	public HookEventSource getSource() {
+		return (HookEventSource) super.source;
 	}
 
 }

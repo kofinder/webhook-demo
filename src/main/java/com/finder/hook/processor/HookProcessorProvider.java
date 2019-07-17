@@ -24,5 +24,4 @@ public class HookProcessorProvider implements ApplicationContextAware {
 	public HookProcessor getProcessor(final Hook hook) {
 		return this.applicationContext.getBean("webHookProcessor", WebHookProcessor.class);
 	}
-
 }

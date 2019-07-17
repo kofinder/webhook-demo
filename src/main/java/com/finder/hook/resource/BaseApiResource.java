@@ -23,7 +23,7 @@ import com.finder.hook.service.HookService;
 @Component
 @Path("hooks")
 @Scope("singleton")
-public class BaseResource {
+public class BaseApiResource {
 	
 	@Autowired private HookService webHook;
 	

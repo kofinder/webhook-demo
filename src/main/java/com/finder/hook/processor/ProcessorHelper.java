@@ -14,6 +14,11 @@ import javax.net.ssl.X509TrustManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.squareup.okhttp.OkHttpClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
@@ -22,12 +27,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-
-import com.squareup.okhttp.OkHttpClient;
-
 /**
  * @author theinlwin
  * @createdAt 7/10/2019
@@ -91,20 +90,26 @@ public class ProcessorHelper {
 	public static Callback createCallback(final String url) {
 		return new Callback() {
 			@Override
-			public void onFailure(Call call, IOException e) {
-				logger.info(e.getMessage());
+			public void onFailure(Call call, Throwable t) {
+				logger.info(t.getMessage());
 			}
 			@Override
-			public void onResponse(Call call, Response response) throws IOException {
+			public void onResponse(Call call, Response response) {
 				logger.info("URL : " + url + "\tStatus : "+ response.body());
 			}
 		};
 	}
 
 	public static WebHookService createWebHookService(final String url) {
-		final OkHttpClient client = ProcessorHelper.createClient();
-		final Retrofit restAdapter = new Retrofit.Builder().baseUrl(url).build();
-		return restAdapter.create(WebHookService.class);
+		final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url) // On AVD
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+		return retrofit.create(WebHookService.class);
+		
+//		final OkHttpClient client = ProcessorHelper.createClient();
+//		final Retrofit restAdapter = new Retrofit.Builder().baseUrl(url).build();
+//		return restAdapter.create(WebHookService.class);
 	}
 
 }
